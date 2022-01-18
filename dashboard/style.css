@@ -1,0 +1,220 @@
+/* ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+} */
+
+/* Google Fonts Import Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  /* box-sizing với giá trị border-box thì cho dù vùng đệm và đường viền có giá trị là bao nhiêu đi nữa, 
+  phần tử vẫn cố định chiều rộng là width= XXpx. */
+  box-sizing: border-box;
+  font-family: "Ubuntu", sans-serif;
+}
+
+:root {
+  --blue: #287bff;
+  --white: #fff;
+  --grey: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+}
+body {
+  min-height: 100vh;
+  /* Thuộc tính overflow-x: hidden. Nếu chiều rộng phần nội dung lớn hơn chiều rộng 
+  phần tử thì phần nội dung dư thừa sẽ bị ẩn đi */
+  overflow-x: hidden;
+}
+.container {
+  /* Position relative: vị trí của phần tử sẽ tương đối so với vị trí tĩnh bạn đặt 
+  và khoản không gian xung quanh phần tử sẽ được giữ nguyên. */
+  position: relative;
+  width: 100%;
+}
+
+.navigation {
+  /* Position fixed: vị trí sẽ nằm cố định một chỗ, dù bạn có làm gì, 
+  phần tử vẫn nằm cố định 1 vị trí trên màn hình. */
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background-color: var(--blue);
+  border-left: 10px solid #f00;
+  transition: 0.5s;
+  /* Khi chiều cao của box không đủ chứa text, 
+  thì text bị tràn sẽ được dấu đi. */
+  overflow: hidden;
+}
+.navigation.active {
+  width: 80px;
+}
+.navigation ul {
+  /* Position absolute: vị trí của phần tử 
+  sẽ được xác định từ padding của phần tử cha. */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation ul li:hover,
+.navigation ul li.hovered {
+  background-color: var(--white);
+}
+.navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+.navigation ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: var(--white);
+}
+.navigation ul li:hover a,
+.navigation ul li.hovered a {
+  color: var(--blue);
+}
+
+.navigation ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 70px;
+  text-align: center;
+}
+
+.navigation ul li a .icon ion-icon {
+  font-size: 1.75em;
+}
+.navigation ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: normal;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50px;
+  box-shadow: 35px 35px 0 10px var(--white);
+  pointer-events: none;
+}
+.navigation ul li:hover a::before,
+.navigation ul li.hovered a::before {
+  content: "";
+  position: absolute;
+  bottom: -50px;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50px;
+  box-shadow: 35px -35px 0 10px var(--white);
+  pointer-events: none;
+}
+/* main */
+
+.main {
+  /* border: 1px solid red; */
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background-color: var(--white);
+  transition: 0.5s;
+}
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: var(--grey) 2px solid;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.toggle {
+  /* border: red 1px solid; */
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+
+.search {
+  /* border: red 1px solid; */
+  position: relative;
+  width: 400px;
+  margin: 0 10px;
+}
+
+.search label {
+  /* border: red 1px solid; */
+  position: relative;
+  width: 100%;
+}
+.search label input {
+  width: 95%;
+  height: 35px;
+  border-radius: 40px;
+  padding: 5px 20px;
+
+  padding-left: 35px;
+  outline: none;
+  font-size: 18px;
+  border: 1px solid var(--black2);
+}
+
+.search label ion-icon {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 1.2em;
+}
+.user {
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.user img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
